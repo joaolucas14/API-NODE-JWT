@@ -15,7 +15,6 @@ router.post("/cadastro", async (req, res) => {
     // encripta a senha
     const salt = await bcrypt.genSalt(10);
     const hashPassword = await bcrypt.hash(user.password, salt);
-
     //cria o usuario no db
     const userDb = await prisma.user.create({
       data: {
@@ -49,6 +48,7 @@ router.post("/login", async (req, res) => {
       return res.status(400).json({ message: "Senha inválida" });
     }
 
+    //cria o token
     const token = jwt.sign({ id: user.id }, JWT_SECRET, { expiresIn: "1d" });
 
     res.status(200).json(token);
