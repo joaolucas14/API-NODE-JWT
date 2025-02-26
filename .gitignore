@@ -1,3 +1,5 @@
 node_modules
 inicializacoes.txt
 .env
+.vercel
+.env*.local
